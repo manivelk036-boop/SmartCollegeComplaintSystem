@@ -17,16 +17,15 @@ public class Main{
         int choice;
 
         do {
-
-            System.out.println("\n==================================");
-            System.out.println(" SMART COLLEGE COMPLAINT SYSTEM");
-            System.out.println("==================================");
-            System.out.println("1. Create Student");
-            System.out.println("2. Delete Student");
-            System.out.println("3. Display Students");
-            System.out.println("4. Exit");
-            System.out.print("Enter Choice : ");
-
+System.out.println("\n==================================");
+System.out.println(" SMART COLLEGE COMPLAINT SYSTEM");
+System.out.println("==================================");
+System.out.println("1. Create Student");
+System.out.println("2. Delete Student");
+System.out.println("3. Display Students");
+System.out.println("4. Search Student");
+System.out.println("5. Exit");
+System.out.print("Enter Choice : ");
             choice = sc.nextInt();
             sc.nextLine();
 
@@ -92,37 +91,68 @@ public class Main{
 
                     break;
 
-                case 3:
+              case 3:
 
-                    if (count == 0) {
-                        System.out.println("No Students Available!");
-                    } else {
+    if (count == 0) {
+        System.out.println("\nNo Students Found!");
+    } else {
 
-                        System.out.println("\n----- Student Details -----");
+        System.out.println("\n========== STUDENT LIST ==========");
 
-                        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
 
-                            System.out.println("Student ID : " + studentIds[i]);
-                            System.out.println("Name       : " + names[i]);
-                            System.out.println("Department : " + departments[i]);
-                            System.out.println("Year       : " + years[i]);
-                            System.out.println("Email      : " + emails[i]);
-                            System.out.println("--------------------------------");
-                        }
-                    }
+            System.out.println("Student ID : " + studentIds[i]);
+            System.out.println("Name       : " + names[i]);
+            System.out.println("Department : " + departments[i]);
+            System.out.println("Year       : " + years[i]);
+            System.out.println("Email      : " + emails[i]);
+            System.out.println("----------------------------------");
+        }
+    }
 
-                    break;
+    break;
+                    
+case 4:
 
-                case 4:
-                    System.out.println("Thank You!");
-                    break;
+    System.out.print("Enter Student ID to Search : ");
+    String searchId = sc.nextLine();
+
+    boolean found1 = false;
+
+    for (int i = 0; i < count; i++) {
+
+        if (studentIds[i].equals(searchId)) {
+
+            System.out.println("\n====== STUDENT DETAILS ======");
+
+            System.out.println("Student ID : " + studentIds[i]);
+            System.out.println("Name       : " + names[i]);
+            System.out.println("Department : " + departments[i]);
+            System.out.println("Year       : " + years[i]);
+            System.out.println("Email      : " + emails[i]);
+
+            found1 = true;
+            break;
+        }
+    }
+
+
+    if (!found1) {
+        System.out.println("Student Not Found!");
+    }
+
+    break;
+
+    case 5:
+    System.out.println("Thank You!");
+    break;
 
                 default:
                     System.out.println("Invalid Choice!");
 
             }
 
-        } while (choice != 4);
+        } while (choice != 5);
 
         sc.close();
     }
