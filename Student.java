@@ -18,7 +18,9 @@ public class Student {
             System.out.println("==================================");
             System.out.println("1. Add Student");
             System.out.println("2. Display Students");
-            System.out.println("3. Exit");
+            System.out.println("3. Search Student");
+            System.out.println("4. Delete Student");
+            System.out.println("5. Exit");
             System.out.print("Enter Choice : ");
 
             choice = sc.nextInt();
@@ -26,6 +28,7 @@ public class Student {
 
             switch (choice) {
 
+                // Add Student
                 case 1:
 
                     System.out.print("Student ID : ");
@@ -55,32 +58,80 @@ public class Student {
 
                     students.put(id, student);
 
-                    System.out.println("Student Added Successfully!");
+                    System.out.println("\nStudent Added Successfully!");
+
                     break;
 
+                // Display Students
                 case 2:
 
                     if (students.isEmpty()) {
-                        System.out.println("No Students Found!");
+                        System.out.println("\nNo Students Found!");
                     } else {
+
+                        System.out.println("\n========== STUDENT LIST ==========");
 
                         for (String studentId : students.keySet()) {
 
                             HashMap<String, String> s = students.get(studentId);
 
-                            System.out.println("----------------------------");
+                            System.out.println("--------------------------------");
                             System.out.println("Student ID : " + studentId);
-                            System.out.println("Name : " + s.get("Name"));
+                            System.out.println("Name       : " + s.get("Name"));
                             System.out.println("Department : " + s.get("Department"));
-                            System.out.println("Year : " + s.get("Year"));
-                            System.out.println("Email : " + s.get("Email"));
-                            System.out.println("----------------------------");
+                            System.out.println("Year       : " + s.get("Year"));
+                            System.out.println("Email      : " + s.get("Email"));
+                            System.out.println("--------------------------------");
                         }
                     }
 
                     break;
 
+                // Search Student
                 case 3:
+
+                    System.out.print("Enter Student ID to Search : ");
+                    String searchId = sc.nextLine();
+
+                    if (students.containsKey(searchId)) {
+
+                        HashMap<String, String> s = students.get(searchId);
+
+                        System.out.println("\n===== STUDENT DETAILS =====");
+                        System.out.println("Student ID : " + searchId);
+                        System.out.println("Name       : " + s.get("Name"));
+                        System.out.println("Department : " + s.get("Department"));
+                        System.out.println("Year       : " + s.get("Year"));
+                        System.out.println("Email      : " + s.get("Email"));
+
+                    } else {
+
+                        System.out.println("Student Not Found!");
+                    }
+
+                    break;
+
+                // Delete Student
+                case 4:
+
+                    System.out.print("Enter Student ID to Delete : ");
+                    String deleteId = sc.nextLine();
+
+                    if (students.containsKey(deleteId)) {
+
+                        students.remove(deleteId);
+
+                        System.out.println("Student Deleted Successfully!");
+
+                    } else {
+
+                        System.out.println("Student Not Found!");
+                    }
+
+                    break;
+
+                // Exit
+                case 5:
 
                     System.out.println("Thank You!");
                     break;
@@ -91,7 +142,7 @@ public class Student {
 
             }
 
-        } while (choice != 3);
+        } while (choice != 5);
 
         sc.close();
     }
