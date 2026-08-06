@@ -20,129 +20,161 @@ public class Student {
             System.out.println("2. Display Students");
             System.out.println("3. Search Student");
             System.out.println("4. Delete Student");
-            System.out.println("5. Exit");
+            System.out.println("5. Update Student");
+            System.out.println("6. Exit");
             System.out.print("Enter Choice : ");
 
             choice = sc.nextInt();
             sc.nextLine();
 
             switch (choice) {
-
-                // Add Student
                 case 1:
 
-                    System.out.print("Student ID : ");
-                    String id = sc.nextLine();
+    System.out.print("Student ID : ");
+    String id = sc.nextLine();
 
-                    if (students.containsKey(id)) {
-                        System.out.println("Student ID Already Exists!");
-                        break;
-                    }
+    if (students.containsKey(id)) {
+        System.out.println("Student ID Already Exists!");
+        break;
+    }
 
-                    HashMap<String, String> student = new HashMap<>();
+    HashMap<String, String> student = new HashMap<>();
 
-                    System.out.print("Name : ");
-                    student.put("Name", sc.nextLine());
+    System.out.print("Name : ");
+    student.put("Name", sc.nextLine());
 
-                    System.out.print("Department : ");
-                    student.put("Department", sc.nextLine());
+    System.out.print("Department : ");
+    student.put("Department", sc.nextLine());
 
-                    System.out.print("Year : ");
-                    student.put("Year", sc.nextLine());
+    System.out.print("Year : ");
+    student.put("Year", sc.nextLine());
 
-                    System.out.print("Email : ");
-                    student.put("Email", sc.nextLine());
+    System.out.print("Email : ");
+    student.put("Email", sc.nextLine());
 
-                    System.out.print("Password : ");
-                    student.put("Password", sc.nextLine());
+    System.out.print("Password : ");
+    student.put("Password", sc.nextLine());
 
-                    students.put(id, student);
+    students.put(id, student);
 
-                    System.out.println("\nStudent Added Successfully!");
+    System.out.println("\nStudent Added Successfully!");
 
-                    break;
+    break;
+            
+            case 2:
 
-                // Display Students
-                case 2:
+    if (students.isEmpty()) {
 
-                    if (students.isEmpty()) {
-                        System.out.println("\nNo Students Found!");
-                    } else {
+        System.out.println("\nNo Students Found!");
 
-                        System.out.println("\n========== STUDENT LIST ==========");
+    } else {
 
-                        for (String studentId : students.keySet()) {
+        System.out.println("\n========== STUDENT LIST ==========");
 
-                            HashMap<String, String> s = students.get(studentId);
+        for (String studentId : students.keySet()) {
 
-                            System.out.println("--------------------------------");
-                            System.out.println("Student ID : " + studentId);
-                            System.out.println("Name       : " + s.get("Name"));
-                            System.out.println("Department : " + s.get("Department"));
-                            System.out.println("Year       : " + s.get("Year"));
-                            System.out.println("Email      : " + s.get("Email"));
-                            System.out.println("--------------------------------");
-                        }
-                    }
+            HashMap<String, String> s = students.get(studentId);
 
-                    break;
+            System.out.println("----------------------------------");
+            System.out.println("Student ID : " + studentId);
+            System.out.println("Name       : " + s.get("Name"));
+            System.out.println("Department : " + s.get("Department"));
+            System.out.println("Year       : " + s.get("Year"));
+            System.out.println("Email      : " + s.get("Email"));
+            System.out.println("----------------------------------");
+        }
+    }
 
-                // Search Student
-                case 3:
+    break;
+case 3:
 
-                    System.out.print("Enter Student ID to Search : ");
-                    String searchId = sc.nextLine();
+    System.out.print("Enter Student ID to Search : ");
+    String searchId = sc.nextLine();
 
-                    if (students.containsKey(searchId)) {
+    if (students.containsKey(searchId)) {
 
-                        HashMap<String, String> s = students.get(searchId);
+        HashMap<String, String> s = students.get(searchId);
 
-                        System.out.println("\n===== STUDENT DETAILS =====");
-                        System.out.println("Student ID : " + searchId);
-                        System.out.println("Name       : " + s.get("Name"));
-                        System.out.println("Department : " + s.get("Department"));
-                        System.out.println("Year       : " + s.get("Year"));
-                        System.out.println("Email      : " + s.get("Email"));
+        System.out.println("\n===== STUDENT DETAILS =====");
+        System.out.println("Student ID : " + searchId);
+        System.out.println("Name       : " + s.get("Name"));
+        System.out.println("Department : " + s.get("Department"));
+        System.out.println("Year       : " + s.get("Year"));
+        System.out.println("Email      : " + s.get("Email"));
+        System.out.println("Password   : " + s.get("Password"));
+        System.out.println("----------------------------");
 
-                    } else {
+    } else {
 
-                        System.out.println("Student Not Found!");
-                    }
+        System.out.println("Student Not Found!");
 
-                    break;
+    }
 
-                // Delete Student
-                case 4:
+    break;
 
-                    System.out.print("Enter Student ID to Delete : ");
-                    String deleteId = sc.nextLine();
+    case 4:
 
-                    if (students.containsKey(deleteId)) {
+    System.out.print("Enter Student ID to Delete : ");
+    String deleteId = sc.nextLine();
 
-                        students.remove(deleteId);
+    if (students.containsKey(deleteId)) {
 
-                        System.out.println("Student Deleted Successfully!");
+        students.remove(deleteId);
 
-                    } else {
+        System.out.println("\nStudent Deleted Successfully!");
 
-                        System.out.println("Student Not Found!");
-                    }
+    } else {
 
-                    break;
+        System.out.println("Student Not Found!");
 
-                // Exit
-                case 5:
+    }
 
-                    System.out.println("Thank You!");
-                    break;
+    break;
+case 5:
 
-                default:
+    System.out.print("Enter Student ID to Update : ");
+    String updateId = sc.nextLine();
 
-                    System.out.println("Invalid Choice!");
+    if (students.containsKey(updateId)) {
 
-            }
+        HashMap<String, String> s = students.get(updateId);
 
-        } while (choice != 5);
+        System.out.print("Enter New Name : ");
+        s.put("Name", sc.nextLine());
+
+        System.out.print("Enter New Department : ");
+        s.put("Department", sc.nextLine());
+
+        System.out.print("Enter New Year : ");
+        s.put("Year", sc.nextLine());
+
+        System.out.print("Enter New Email : ");
+        s.put("Email", sc.nextLine());
+
+        System.out.print("Enter New Password : ");
+        s.put("Password", sc.nextLine());
+
+        System.out.println("\nStudent Updated Successfully!");
+
+    } else {
+
+        System.out.println("Student Not Found!");
+
+    }
+
+    break;
+
+case 6:
+
+    System.out.println("Thank You!");
+    break;
+
+default:
+
+    System.out.println("Invalid Choice!");
+                }
+
+        } while (choice != 6);
 
         sc.close();
     }
