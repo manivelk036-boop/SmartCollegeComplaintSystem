@@ -8,22 +8,29 @@ public class Student {
         Scanner sc = new Scanner(System.in);
 
         HashMap<String, HashMap<String, String>> students = new HashMap<>();
-
+        HashMap<String, HashMap<String, String>> complaints = new HashMap<>();
         int choice;
 
         do {
 
-            System.out.println("\n==================================");
-            System.out.println(" SMART COLLEGE COMPLAINT SYSTEM");
-            System.out.println("==================================");
-            System.out.println("1. Add Student");
-            System.out.println("2. Display Students");
-            System.out.println("3. Search Student");
-            System.out.println("4. Delete Student");
-            System.out.println("5. Update Student");
-            System.out.println("6. Exit");
-            System.out.print("Enter Choice : ");
+           System.out.println("\n==================================");
+System.out.println(" SMART COLLEGE COMPLAINT SYSTEM");
+System.out.println("==================================");
 
+System.out.println("\n----- Student Module -----");
+System.out.println("1. Add Student");
+System.out.println("2. Display Students");
+System.out.println("3. Search Student");
+System.out.println("4. Delete Student");
+System.out.println("5. Update Student");
+
+System.out.println("\n----- Complaint Module -----");
+System.out.println("6. Register Complaint");
+System.out.println("7. Display Complaints");
+
+System.out.println("\n8. Exit");
+
+System.out.print("Enter Choice : ");
             choice = sc.nextInt();
             sc.nextLine();
 
@@ -163,9 +170,65 @@ case 5:
     }
 
     break;
-
 case 6:
 
+    System.out.print("Complaint ID : ");
+    String complaintId = sc.nextLine();
+
+    if (complaints.containsKey(complaintId)) {
+        System.out.println("Complaint ID Already Exists!");
+        break;
+    }
+
+    HashMap<String, String> complaint = new HashMap<>();
+
+    System.out.print("Student ID : ");
+    complaint.put("Student ID", sc.nextLine());
+
+    System.out.print("Complaint Title : ");
+    complaint.put("Title", sc.nextLine());
+
+    System.out.print("Description : ");
+    complaint.put("Description", sc.nextLine());
+
+    System.out.print("Category : ");
+    complaint.put("Category", sc.nextLine());
+
+    complaint.put("Status", "Pending");
+
+    complaints.put(complaintId, complaint);
+
+    System.out.println("\nComplaint Registered Successfully!");
+
+    break;
+
+case 7:
+
+    if (complaints.isEmpty()) {
+
+        System.out.println("\nNo Complaints Found!");
+
+    } else {
+
+        System.out.println("\n========== COMPLAINT LIST ==========");
+
+        for (String complainId : complaints.keySet()) {
+
+            HashMap<String, String> c = complaints.get(complainId);
+
+            System.out.println("-----------------------------------");
+            System.out.println("Complaint ID : " + complainId);
+            System.out.println("Student ID   : " + c.get("Student ID"));
+            System.out.println("Title        : " + c.get("Title"));
+            System.out.println("Description  : " + c.get("Description"));
+            System.out.println("Category     : " + c.get("Category"));
+            System.out.println("Status       : " + c.get("Status"));
+            System.out.println("-----------------------------------");
+        }
+    }
+
+    break;
+    case 8:
     System.out.println("Thank You!");
     break;
 
@@ -174,7 +237,7 @@ default:
     System.out.println("Invalid Choice!");
                 }
 
-        } while (choice != 6);
+        } while (choice != 8);
 
         sc.close();
     }
